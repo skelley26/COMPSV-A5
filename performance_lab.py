@@ -1,3 +1,5 @@
+from itertools import combinations
+
 # 🔍 Problem 1: Find Most Frequent Element
 # Given a list of integers, return the value that appears most frequently.
 # If there's a tie, return any of the most frequent.
@@ -7,17 +9,33 @@
 # Output: 3
 
 def most_frequent(numbers):
-    # Your code here
-    pass
+    duplicates = [i for i in set(numbers) if numbers.count(i) > 1]
+    print(duplicates)
+    
+#most_frequent([1, 3, 2, 3, 4, 1, 3])
+
+# Started with what I know, but i found that on GeeksforGeeks, there is an even more efficient way to write it.
+#     s = set()
+#     duplicates = []
+#     for i in numbers:
+#         if i in s:
+#             duplicates.append(i)
+#         else:
+#             s.add(i)
+#     print(duplicates)
+
+ 
+        
+    
 
 """
 Time and Space Analysis for problem 1:
-- Best-case:
-- Worst-case:
-- Average-case:
-- Space complexity:
-- Why this approach?
-- Could it be optimized?
+- Best-case: It loops once through the dataset and quickly spits out the duplicates
+- Worst-case: Loops several times over the dataset and takes forever to spit out the duplicates
+- Average-case: Loops, sorts the duplicates into a set and the rest of the numbers in a list.
+- Space complexity: O[1] because it's counting the values in the list and creating a set.
+- Why this approach? 
+- Could it be optimized? I imagine it could be since it has to loop through each item on the list.
 """
 
 
@@ -29,16 +47,18 @@ Time and Space Analysis for problem 1:
 # Output: [4, 5, 6, 7]
 
 def remove_duplicates(nums):
-    # Your code here
-    pass
+    nums = list(dict.fromkeys(nums))
+    print(nums)
+
+#remove_duplicates([4, 5, 4, 6, 5, 7])
 
 """
 Time and Space Analysis for problem 2:
 - Best-case:
 - Worst-case:
 - Average-case:
-- Space complexity:
-- Why this approach?
+- Space complexity: 
+- Why this approach? makes a dict for the list, then turns it back into a list, instead of keeping the duplicate list from above, which would be an extra loop.
 - Could it be optimized?
 """
 
@@ -52,8 +72,16 @@ Time and Space Analysis for problem 2:
 # Output: [(1, 4), (2, 3)]
 
 def find_pairs(nums, target):
-    # Your code here
-    pass
+  return[pair for pair in combinations(nums, 2) if sum(pair) == target]
+
+nums = [1, 2, 3, 4]
+target = 5
+#print(find_pairs(nums, target))
+        
+    
+    
+    
+    
 
 """
 Time and Space Analysis for problem 3:
@@ -75,9 +103,10 @@ Time and Space Analysis for problem 3:
 # add_n_items(6) → should print when resizing happens.
 
 def add_n_items(n):
-    # Your code here
-    pass
-
+    items = []
+    for i in range(5):
+        items.append(n)
+add_n_items(6)
 """
 Time and Space Analysis for problem 4:
 - When do resizes happen?
@@ -98,8 +127,8 @@ Time and Space Analysis for problem 4:
 # Because: [1, 1+2, 1+2+3, 1+2+3+4]
 
 def running_total(nums):
-    # Your code here
-    pass
+    nums = []
+    total = sum(nums)
 
 """
 Time and Space Analysis for problem 5:
@@ -110,3 +139,8 @@ Time and Space Analysis for problem 5:
 - Why this approach?
 - Could it be optimized?
 """
+
+
+# https://www.geeksforgeeks.org/python/how-to-find-duplicates-in-a-list-python/
+# https://www.w3schools.com/python/python_howto_remove_duplicates.asp
+# https://www.geeksforgeeks.org/python/python-program-to-find-all-possible-pairs-with-given-sum/
